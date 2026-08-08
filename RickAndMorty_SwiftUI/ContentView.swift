@@ -15,7 +15,12 @@ struct ContentView: View {
             if let response = characterViewModel.characterResponse {
                 List(response.results.indices, id:\.self) { index in
                     let character = response.results[index]
-                    Text(character.name)
+                    Text(character.name).onAppear {
+                        
+                        if index == response.results.count - 1 {
+                            print("End of the line")
+                        }
+                    }
                 }
             } else {
                 ContentUnavailableView("Unable to fetch data", systemImage: "tray")
