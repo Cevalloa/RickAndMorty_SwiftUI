@@ -7,6 +7,7 @@
 
 struct CharacterResponse: Decodable {
     let info: CharacterInfoResponse
+    let results: [Character]
 }
 
 struct CharacterInfoResponse: Decodable {
@@ -14,4 +15,8 @@ struct CharacterInfoResponse: Decodable {
     let pages: Int
     let next: String?
     let prev: String?
+}
+
+struct Character: Decodable {
+    let name: String
 }

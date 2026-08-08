@@ -10,8 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @State var characterViewModel = CharacterViewModel()
     var body: some View {
-        List() {
-            Text("\(characterViewModel.characters?.info.count ?? 0)")
+        
+        Group {
+            if let response = characterViewModel.characterResponse {
+                List(response.results.indices) { index in
+                    let character = response.results[index]
+                    Text(character.name)
+                }
+            }
         }.task {
             await characterViewModel.getCharacters()
         }

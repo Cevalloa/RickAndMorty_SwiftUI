@@ -10,9 +10,9 @@ import SwiftUI
 @Observable
 class CharacterViewModel {
     private let characterService = CharacterService()
-    var characters: CharacterResponse?
+    var characterResponse: CharacterResponse?
     
     func getCharacters() async {
-        characters = await characterService.fetchCharacters()
+        characterResponse = await characterService.fetchCharacters()
     }
 }
