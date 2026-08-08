@@ -13,7 +13,7 @@ struct ContentView: View {
         
         Group {
             if let response = characterViewModel.characterResponse {
-                List(response.results.indices) { index in
+                List(response.results.indices, id:\.self) { index in
                     let character = response.results[index]
                     Text(character.name)
                 }
