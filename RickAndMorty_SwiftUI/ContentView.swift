@@ -17,6 +17,8 @@ struct ContentView: View {
                     let character = response.results[index]
                     Text(character.name)
                 }
+            } else {
+                ContentUnavailableView("Unable to fetch data", systemImage: "tray")
             }
         }.task {
             await characterViewModel.getCharacters()
