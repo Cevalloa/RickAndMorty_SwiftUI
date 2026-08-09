@@ -12,13 +12,13 @@ struct ContentView: View {
     var body: some View {
         
         Group {
-            if let response = characterViewModel.characterResponse {
-                List(response.results.indices, id:\.self) { index in
-                    let character = response.results[index]
-                    Text(character.name).onAppear {
+            if !characterViewModel.characters.isEmpty {
+                List(characterViewModel.characters.indices, id:\.self) { index in
+                    let character = characterViewModel.characters[index]
+                    Text(character.name).task {
                         
-                        if index == response.results.count - 1 {
-                            print("End of the line")
+                        if index == characterViewModel.characters.count - 1 {
+                            await characterViewModel.getAdditionalCharacters()
                         }
                     }
                 }

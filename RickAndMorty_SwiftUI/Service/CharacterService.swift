@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CharacterService {
-    func fetchCharacters() async -> CharacterResponse? {
-        guard let url = URL(string:"https://rickandmortyapi.com/api/character") else {
+
+    func fetchCharacters(defaultURLString: String = "https://rickandmortyapi.com/api/character") async -> CharacterResponse? {
+        guard let url = URL(string: defaultURLString) else {
             return nil
         }
 
