@@ -9,12 +9,18 @@ import SwiftUI
 @MainActor
 @Observable
 class CharacterViewModel {
+    
+    // MARK: - Service Layer
     private let characterService = CharacterService()
-    var characterResponse: CharacterResponse?
+    
+    // MARK: - Class Level Properties
+    
+    var info: CharacterInfoResponse?
     var characters: [Character] = []
 
     func getCharacters() async {
-        characterResponse = await characterService.fetchCharacters()
+        let characterResponse = await characterService.fetchCharacters()
+        info = characterResponse?.info
         if let newCharacters = characterResponse?.results {
             characters.append(contentsOf: newCharacters)
         }
